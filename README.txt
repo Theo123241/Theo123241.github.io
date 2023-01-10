@@ -1,1 +1,1 @@
-IDK WHATS GOING ON
+Guess the role from the incomplete ability text.
