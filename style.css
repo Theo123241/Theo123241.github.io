@@ -27,8 +27,9 @@
 
   h2 {
     background: #ffffff;
-    padding: 1rem;
     text-align: center;
+    margin-top: -100px;
+    padding: 1rem;
   }
 
   h3 {
@@ -45,6 +46,20 @@
     font-size: 20px;
   }
   
+  h5 {
+    background: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+
+  h6 {
+    background: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: underline;
+  }
+
   .container {
     margin: auto;
     width: 500px;
@@ -94,4 +109,15 @@
     color: #fff;
     padding: 5px;
     margin: 5px;
+  }
+
+  .option {
+    padding-left: 60%;
+    margin-top: -102px; 
+    margin-bottom: 102px;
+  }
+
+  
+  .edition {
+    padding-left: 10%;
   }
