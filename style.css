@@ -57,6 +57,7 @@
     background: #ffffff;
     text-align: center;
     font-size: 20px;
+    padding: 1rem;
     text-decoration: underline;
   }
 
@@ -120,4 +121,16 @@
   
   .edition {
     padding-left: 10%;
+  }
+
+  .difficulty{
+    margin-left: 0px;
+  }
+
+  .difficultyWord{
+    margin-left: 20%;
+  }
+
+  .difficulty_button{
+    margin-left: 0px;
   }

@@ -1770,20 +1770,29 @@ function display(difficulty, offset, script, type) {
     return(role)
 }
 
+function getDifficulty() {
+  difficulty = parseInt(document.getElementById('difficulty').value)
+  if (difficulty <= 0) {
+    difficulty = 1
+  }
+  console.log(difficulty)
+}
 
 let difficulty = 3
 let offset = false
-let tb = '~'
-let snv = '~'
-let bmr = '~'
-let ks = '~'
-let town = '~'
-let outsider = '~'
-let minion = '~'
-let demon = '~'
-let traveler = '~'
+let tb = null
+let snv = null
+let bmr = null
+let ks = null
+let town = null
+let outsider = null
+let minion = null
+let demon = null
+let traveler = null
 script = [tb, snv, bmr, ks]
 type = [town, outsider, minion, demon, traveler]
+
+document.getElementById('difficulty_button').onclick = getDifficulty
 
 const Button = document.getElementById('Button');
     //Add on click listener for button
@@ -1816,7 +1825,7 @@ const TBbox = document.getElementById('tb');
     //Add on click listener for button
     TBbox.addEventListener('click', function() {
       if (tb == 'tb'){
-        tb = '~'
+        tb = null
       } else {
          tb = 'tb'
       }
@@ -1826,7 +1835,7 @@ const SNVbox = document.getElementById('snv');
     //Add on click listener for button
     SNVbox.addEventListener('click', function() {
       if (snv == 'snv'){
-        snv = '~'
+        snv = null
       } else {
          snv = 'snv'
       }
@@ -1836,7 +1845,7 @@ const BMRbox = document.getElementById('bmr');
     //Add on click listener for button
     BMRbox.addEventListener('click', function() {
       if (bmr == 'bmr'){
-        bmr = '~'
+        bmr = null
       } else {
          bmr = 'bmr'
       }
@@ -1846,7 +1855,7 @@ const KSbox = document.getElementById('ks');
     //Add on click listener for button
     KSbox.addEventListener('click', function() {
       if (ks == ''){
-        ks = '~'
+        ks = null
       } else {
          ks = ''
       }
@@ -1856,7 +1865,7 @@ const Townbox = document.getElementById('town');
     //Add on click listener for button
     Townbox.addEventListener('click', function() {
       if (town == 'townsfolk'){
-        town = '~'
+        town = null
       } else {
          town = 'townsfolk'
       }
@@ -1866,7 +1875,7 @@ const Outsiderbox = document.getElementById('outsider');
     //Add on click listener for button
     Outsiderbox.addEventListener('click', function() {
       if (outsider == 'outsider'){
-        outsider = '~'
+        outsider = null
       } else {
         outsider = 'outsider'
       }
@@ -1876,7 +1885,7 @@ const Minionbox = document.getElementById('minion');
     //Add on click listener for button
     Minionbox.addEventListener('click', function() {
       if (minion == 'minion'){
-        minion = '~'
+        minion = null
       } else {
         minion = 'minion'
       }
@@ -1886,7 +1895,7 @@ const Demonbox = document.getElementById('demon');
     //Add on click listener for button
     Demonbox.addEventListener('click', function() {
       if (demon == 'demon'){
-        demon = '~'
+        demon = null
       } else {
         demon = 'demon'
       }
@@ -1896,7 +1905,7 @@ const Travelerbox = document.getElementById('traveler');
     //Add on click listener for button
     Travelerbox.addEventListener('click', function() {
       if (traveler == 'traveler'){
-        traveller = '~'
+        traveller = null
       } else {
         traveler = 'traveler'
       }

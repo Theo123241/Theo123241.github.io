@@ -8,14 +8,19 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <style> </style>
-  <body>
+  <div>
     <header>
       <h1>BotC Role Guessing</h1>
     </header>
+    <div>
       <h5>Difficulty</h5>
       <div class="edition">Offset:
         <input type="checkbox" id="offset">
-      </div>
+      <span class="difficultyWord">Difficulty:
+        <input type="number" id="difficulty" name="difficulty" class="difficulty" min="1" max="10">
+        <input type="button" value="confirm"id ='difficulty_button'>
+      </span>
+    </div>
       <h6>Available Roles</h6>
       <div class="edition">TB:
         <input type="checkbox" id="tb">
@@ -53,6 +58,8 @@
         <input type="checkbox" id="traveler">
       </div>
 
+    
+    </div>
     <h2 id = "Ability"> </h2>    
     <button id="Button">Answer</button>
     <h3 id = "Answer">  </h3>
@@ -60,7 +67,7 @@
 
     <button id="Again">New Role!</button>
 
-    <script type="text/javascript" src="roles.json"></script>
+    <!-- <script type="text/javascript" src="roles.json"></script> -->
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
