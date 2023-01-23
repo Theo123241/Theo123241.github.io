@@ -1784,9 +1784,6 @@ let demon = '~'
 let traveler = '~'
 script = [tb, snv, bmr, ks]
 type = [town, outsider, minion, demon, traveler]
-role = display(difficulty, offset, script, type)
-let role_name = (roles_list[role].name)
-let edition = (roles_list[role].edition)
 
 const Button = document.getElementById('Button');
     //Add on click listener for button
