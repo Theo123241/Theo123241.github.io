@@ -7,18 +7,60 @@
     <title>BotC Role Guessing</title>
     <link rel="stylesheet" href="style.css">
   </head>
+  <style> </style>
   <body>
     <header>
       <h1>BotC Role Guessing</h1>
     </header>
+      <div class="fred">Offset:
+        <input type="checkbox" id="offset">
+      </div>
+
+      <div class="option">TB:
+        <input type="checkbox" id="tb">
+      </div>
+      
+      <div class="option">S&V:
+        <input type="checkbox" id="snv">
+      </div>
+
+      <div class="option">BMR:
+        <input type="checkbox" id="bmr">
+      </div>
+
+      <div class="option">Other:
+        <input type="checkbox" id="ks">
+      </div>
+
+      <div class="option">Townsfolk:
+        <input type="checkbox" id="town">
+      </div>
+
+      <div class="option">Outsiders:
+        <input type="checkbox" id="outsider">
+      </div>
+
+      <div class="option">Minions:
+        <input type="checkbox" id="minion">
+      </div>
+
+      <div class="option">Demons:
+        <input type="checkbox" id="demon">
+      </div>
+
+      <div class="option">Travelers:
+        <input type="checkbox" id="traveler">
+      </div>
+
     <h2 id = "Ability"> </h2>    
     <button id="Button">Answer</button>
     <h3 id = "Answer">  </h3>
     <h4 id = 'Answer2'> </h4>
 
-    <button onClick="window.location.reload();">Again!</button>
+    <button id="Again">New Role!</button>
 
     <script type="text/javascript" src="roles.json"></script>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
+

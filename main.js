@@ -941,7 +941,7 @@ const roles_list = [
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "If you are \u201Cmad\u201D about being an Outsider, you might be executed."
+    "ability": "If you are mad about being an Outsider, you might be executed."
   },
   {
     "id": "sweetheart",
@@ -1019,7 +1019,7 @@ const roles_list = [
     "otherNightReminder": "The Cerenovus points to a player, then to a character on their sheet. Wake that player. Show the 'This character selected you' card, then the Cerenovus token. Show the selected character token. If the player is not mad about being that character tomorrow, they can be executed.",
     "reminders": ["Mad"],
     "setup": false,
-    "ability": "Each night, choose a player & a good character: they are \u201Cmad\u201D they are this character tomorrow, or might be executed."
+    "ability": "Each night, choose a player & a good character: they are mad they are this character tomorrow, or might be executed."
   },
   {
     "id": "pithag",
@@ -1583,20 +1583,6 @@ const roles_list = [
     "ability": "If you publicly claim to be the Goblin when nominated & are executed that day, your team wins."
   },
   {
-    "id": "mephit",
-    "name": "Mephit",
-    "edition": "",
-    "team": "minion",
-    "firstNight": 27,
-    "firstNightReminder": "Show the Mephit their secret word.",
-    "otherNight": 18,
-    "otherNightReminder": "Wake the 1st good player that said the Mephit's secret word and show them the 'You are' card and the thumbs down evil signal.",
-    "reminders": ["Turns evil",
-        "No ability"],
-    "setup": false,
-    "ability": "You start knowing a secret word. The 1st good player to say this word becomes evil that night."
-  },
-  {
     "id": "mezepheles",
     "name": "Mezepheles",
     "edition": "",
@@ -1740,27 +1726,182 @@ const roles_list = [
     "ability": "Once per day, you may choose to kill an alive neighbour, if your other alive neighbour agrees."
   }
 ]
-let role = Math.floor(Math.random() * 130);
-let edition = (roles_list[role].edition)
-let role_name = (roles_list[role].name)
-let ability = []
-ability = (roles_list[role].ability)
-ability = ability.replace(/[[.,\/#!$%\^\*;:{}=\_`~()]/g,"")
-ability = ability.replace(/]/g,"")
-ability = ability.replace(/-/g," ")
-ability = ability.toLowerCase()
-ability = ability.split(' ')
-let words = ability.length;
 
-for (let i = 0; i < words; i += 3) {
-    document.getElementById("Ability").innerHTML += ability[i];
-    document.getElementById("Ability").innerHTML += ' ';
+function display(difficulty, offset, script, type) {
+    document.getElementById("Ability").innerHTML = '';
+    document.getElementById("Answer").innerHTML = '';
+    document.getElementById("Answer2").innerHTML = '';
+    let role = Math.floor(Math.random() * 129);
+    if (script.every((val, i, arr) => val === arr[0]) == true) {
+      if (type.every((val, i, arr) => val === arr[0]) == false) {
+        while (type.includes(roles_list[role].team) == false) {
+          role = Math.floor(Math.random() * 129);
+        }
+      }
+    } else {
+      if (type.every((val, i, arr) => val === arr[0]) == true) {
+        while (script.includes(roles_list[role].edition) == false) {
+          role = Math.floor(Math.random() * 129);
+        }
+      }
+      else {
+        while (script.includes(roles_list[role].edition) == false || type.includes(roles_list[role].team) == false) {
+          role = Math.floor(Math.random() * 129);
+        }
+      }
+    }
+
+    let ability = []
+    ability = (roles_list[role].ability)
+    ability = ability.replace(/[[.'",\/#!$%\^\*;:{}=\_`~()]/g,"")
+    ability = ability.replace(/]/g,"")
+    ability = ability.replace(/-/g," ")
+    ability = ability.toLowerCase()
+    ability = ability.split(' ')
+    let words = ability.length;
+    let offsetNum = 0
+    if (offset == true) {
+      offsetNum = Math.floor(Math.random() * difficulty);
+    } 
+    for (let i = offsetNum; i < words; i += difficulty) {
+        document.getElementById("Ability").innerHTML += ability[i];
+        document.getElementById("Ability").innerHTML += ' ';
+    }
+    return(role)
 }
+
+
+let difficulty = 3
+let offset = false
+let tb = '~'
+let snv = '~'
+let bmr = '~'
+let ks = '~'
+let town = '~'
+let outsider = '~'
+let minion = '~'
+let demon = '~'
+let traveler = '~'
+script = [tb, snv, bmr, ks]
+type = [town, outsider, minion, demon, traveler]
+role = display(difficulty, offset, script, type)
+let role_name = (roles_list[role].name)
+let edition = (roles_list[role].edition)
 
 const Button = document.getElementById('Button');
     //Add on click listener for button
     Button.addEventListener('click', function() {
       document.getElementById("Answer").innerHTML = roles_list[role].ability;
       document.getElementById("Answer2").innerHTML = role_name;
-
     })
+
+const Again = document.getElementById('Again');
+    //Add on click listener for button
+    Again.addEventListener('click', function() {
+      script = [tb, snv, bmr, ks]
+      type = [town, outsider, minion, demon, traveler]
+      role = display(difficulty, offset, script, type)
+      role_name = (roles_list[role].name)
+      edition = (roles_list[role].edition)
+    })
+
+const Offset = document.getElementById('offset');
+    //Add on click listener for button
+    Offset.addEventListener('click', function() {
+      if (offset == true){
+        offset = false
+      } else {
+         offset = true
+      }
+    })
+
+const TBbox = document.getElementById('tb');
+    //Add on click listener for button
+    TBbox.addEventListener('click', function() {
+      if (tb == 'tb'){
+        tb = '~'
+      } else {
+         tb = 'tb'
+      }
+    })
+
+const SNVbox = document.getElementById('snv');
+    //Add on click listener for button
+    SNVbox.addEventListener('click', function() {
+      if (snv == 'snv'){
+        snv = '~'
+      } else {
+         snv = 'snv'
+      }
+    })
+
+const BMRbox = document.getElementById('bmr');
+    //Add on click listener for button
+    BMRbox.addEventListener('click', function() {
+      if (bmr == 'bmr'){
+        bmr = '~'
+      } else {
+         bmr = 'bmr'
+      }
+    })
+
+const KSbox = document.getElementById('ks');
+    //Add on click listener for button
+    KSbox.addEventListener('click', function() {
+      if (ks == ''){
+        ks = '~'
+      } else {
+         ks = ''
+      }
+    })
+
+const Townbox = document.getElementById('town');
+    //Add on click listener for button
+    Townbox.addEventListener('click', function() {
+      if (town == 'townsfolk'){
+        town = '~'
+      } else {
+         town = 'townsfolk'
+      }
+    })
+  
+const Outsiderbox = document.getElementById('outsider');
+    //Add on click listener for button
+    Outsiderbox.addEventListener('click', function() {
+      if (outsider == 'outsider'){
+        outsider = '~'
+      } else {
+        outsider = 'outsider'
+      }
+    })
+
+const Minionbox = document.getElementById('minion');
+    //Add on click listener for button
+    Minionbox.addEventListener('click', function() {
+      if (minion == 'minion'){
+        minion = '~'
+      } else {
+        minion = 'minion'
+      }
+    })
+
+const Demonbox = document.getElementById('demon');
+    //Add on click listener for button
+    Demonbox.addEventListener('click', function() {
+      if (demon == 'demon'){
+        demon = '~'
+      } else {
+        demon = 'demon'
+      }
+    })
+  
+const Travelerbox = document.getElementById('traveler');
+    //Add on click listener for button
+    Travelerbox.addEventListener('click', function() {
+      if (traveler == 'traveler'){
+        traveller = '~'
+      } else {
+        traveler = 'traveler'
+      }
+    })
+
