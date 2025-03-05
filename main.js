@@ -10,7 +10,7 @@ function display(difficulty, offset, script, type) {
     document.getElementById("Ability").innerHTML = '';
     document.getElementById("Answer").innerHTML = '';
     document.getElementById("Answer2").innerHTML = '';
-    let role = Math.floor(Math.random() * 129);
+    let role = Math.floor(Math.random() * 180);
     if (script.every((val, i, arr) => val === arr[0]) == true) {
       if (type.every((val, i, arr) => val === arr[0]) == false) {
         while (type.includes(roles_list[role].team) == false) {
@@ -59,16 +59,16 @@ function getDifficulty() {
 
 let difficulty = 3
 let offset = false
-let tb = null
-let snv = null
-let bmr = null
-let ks = null
-let town = null
-let outsider = null
-let minion = null
-let demon = null
-let traveler = null
-script = [tb, snv, bmr, ks]
+let tb = false
+let snv = false
+let bmr = false
+let exp = false
+let town = false
+let outsider = false
+let minion = false
+let demon = false
+let traveler = false
+script = [tb, snv, bmr, exp]
 type = [town, outsider, minion, demon, traveler]
 
 document.getElementById('difficulty_button').onclick = getDifficulty
@@ -80,11 +80,50 @@ const Button = document.getElementById('Button');
       document.getElementById("Answer2").innerHTML = role_name;
     })
 
+
+function getScript(tb, snv, bmr, exp) {
+    script = [null, null, null, null]
+    if (tb) {
+        script[o] = 'tb'
+    }
+    if (snv) {
+        script[1] = 'snv'
+    }
+    if (bmr) {
+        script[2] = 'bmr'
+    }
+    if (exp) {
+        script[3] = 'exp'
+    }
+    return script
+}
+
+function getType(town, outsider, minion, demon, traveler) {
+    type = [null, null, null, null, null]
+    if (town) {
+        type[o] = 'town'
+    }
+    if (outsider) {
+        type[1] = 'outsider'
+    }
+    if (minion) {
+        type[2] = 'minion'
+    }
+    if (demon) {
+        type[3] = 'demon'
+    }
+    if (traveler) {
+        type[4] = 'traveler'
+    }
+    return type
+}
+
+
 const Again = document.getElementById('Again');
     //Add on click listener for button
     Again.addEventListener('click', function() {
-      script = [tb, snv, bmr, ks]
-      type = [town, outsider, minion, demon, traveler]
+      script = getScript()
+      type = getType()
       role = display(difficulty, offset, script, type)
       role_name = (roles_list[role].name)
       edition = (roles_list[role].edition)
@@ -93,99 +132,59 @@ const Again = document.getElementById('Again');
 const Offset = document.getElementById('offset');
     //Add on click listener for button
     Offset.addEventListener('click', function() {
-      if (offset == true){
-        offset = false
-      } else {
-         offset = true
-      }
+      offset != offset
     })
 
 const TBbox = document.getElementById('tb');
     //Add on click listener for button
     TBbox.addEventListener('click', function() {
-      if (tb == 'tb'){
-        tb = null
-      } else {
-         tb = 'tb'
-      }
+      tb != tb
     })
 
 const SNVbox = document.getElementById('snv');
     //Add on click listener for button
     SNVbox.addEventListener('click', function() {
-      if (snv == 'snv'){
-        snv = null
-      } else {
-         snv = 'snv'
-      }
+      snv != snv
     })
 
 const BMRbox = document.getElementById('bmr');
     //Add on click listener for button
     BMRbox.addEventListener('click', function() {
-      if (bmr == 'bmr'){
-        bmr = null
-      } else {
-         bmr = 'bmr'
-      }
+      bmr != bmr
     })
 
-const KSbox = document.getElementById('ks');
+const EXPbox = document.getElementById('exp');
     //Add on click listener for button
-    KSbox.addEventListener('click', function() {
-      if (ks == ''){
-        ks = null
-      } else {
-         ks = ''
-      }
+    EXPbox.addEventListener('click', function() {
+      exp != exp
     })
 
 const Townbox = document.getElementById('town');
     //Add on click listener for button
     Townbox.addEventListener('click', function() {
-      if (town == 'townsfolk'){
-        town = null
-      } else {
-         town = 'townsfolk'
-      }
+      town != town
     })
   
 const Outsiderbox = document.getElementById('outsider');
     //Add on click listener for button
     Outsiderbox.addEventListener('click', function() {
-      if (outsider == 'outsider'){
-        outsider = null
-      } else {
-        outsider = 'outsider'
-      }
+      outsider != outsider
     })
 
 const Minionbox = document.getElementById('minion');
     //Add on click listener for button
     Minionbox.addEventListener('click', function() {
-      if (minion == 'minion'){
-        minion = null
-      } else {
-        minion = 'minion'
-      }
+      minion != minion
     })
 
 const Demonbox = document.getElementById('demon');
     //Add on click listener for button
     Demonbox.addEventListener('click', function() {
-      if (demon == 'demon'){
-        demon = null
-      } else {
-        demon = 'demon'
-      }
+      demon != demon
     })
   
 const Travelerbox = document.getElementById('traveler');
     //Add on click listener for button
     Travelerbox.addEventListener('click', function() {
-      if (traveler == 'traveler'){
-        traveller = null
-      } else {
-        traveler = 'traveler'
-      }
+      traveler != traveler
     })
