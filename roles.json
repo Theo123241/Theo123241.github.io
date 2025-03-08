@@ -1,33 +1,5 @@
 [
     {
-      "id": "dusk",
-      "edition": "special",
-      "name": "Dusk",
-      "firstNightReminder": "Start the Night Phase.",
-      "otherNightReminder": "Start the Night Phase."
-    },
-    {
-      "id": "dawn",
-      "edition": "special",
-      "name": "Dawn",
-      "firstNightReminder": "Wait for a few seconds. End the Night Phase.",
-      "otherNightReminder": "Wait for a few seconds. End the Night Phase."
-    },
-    {
-      "id": "minioninfo",
-      "edition": "special",
-      "name": "Minion Info",
-      "team": "minion",
-      "firstNightReminder": "If there are 7 or more players, wake all Minions:\n\tShow the *THIS IS THE DEMON* token. Point to the Demon.\n\tShow the *THESE ARE YOUR MINIONS* token. Point to the other Minions."
-    },
-    {
-      "id": "demoninfo",
-      "edition": "special",
-      "name": "Demon Info",
-      "team": "demon",
-      "firstNightReminder": "If there are 7 or more players, wake the Demon:\n\tShow the *THESE ARE YOUR MINIONS* token. Point to all Minions.\n\tShow the *THESE CHARACTERS ARE NOT IN PLAY* token. Show 3 not-in-play good character tokens."
-    },
-    {
       "id": "washerwoman",
       "name": "Washerwoman",
       "edition": "tb",
