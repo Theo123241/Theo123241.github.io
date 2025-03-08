@@ -26,11 +26,6 @@ function display(difficulty, offset, script, type) {
     if (role.edition == "") {
         role.edition = "exp"
     }
-    console.log(role.name)
-    console.log(role.edition)
-    console.log(options[role.edition])
-    console.log(role.team)
-    console.log(options[role.team])
 
     scripts = ["tb", "snv", "bmr", "exp"]
     types = ["townsfolk", "outsider", "minion", "demon", "traveller"]
@@ -89,7 +84,7 @@ const Button = document.getElementById('Button');
 function changeCheckBox() {
     let name = this.id
     options[name] = ! options[name]
-    console.log("Full dictionary:", JSON.stringify(options, null, 2));
+    //console.log("Full dictionary:", JSON.stringify(options, null, 2));
     return 
 }
 
