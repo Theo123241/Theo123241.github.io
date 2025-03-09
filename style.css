@@ -2,90 +2,100 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
   
-  body {
+body {
     font-family: Arial, Helvetica, sans-serif;
+    color: #333;
     line-height: 1.6;
-  }
-  
-  ul {
-    list-style: none;
-  }
-  
-  ul li {
-    padding: 5px;
-    background: #f4f4f4;
-    margin: 5px 0;
-  }
-  
-  header {
-    background: #f4f4f4;
-    padding: 1rem;
-    text-align: center;
-  }
+}
 
-  h2 {
-    background: #ffffff;
-    text-align: center;
-    margin-top: -100px;
-    padding: 1rem;
-  }
 
-  h3 {
+
+.navbar a:hover {
+    border-bottom: 2px #c3a387 solid;
+}
+
+
+h1 {
+    text-align: center;
+    margin: 10px 0px;
+    font-weight: 550;
+}
+
+h2 {
+    text-align: center;
+    margin: 10px 0px;
+    font-weight: 300;
+}
+
+h3 {
     background: #ffffff;
     padding: 1rem;
     text-align: center;
     font-size: 20px;
-  }
+}
 
-  h4 {
+h4 {
     background: #ffffff;
     padding: 1rem;
     text-align: center;
     font-size: 20px;
-  }
-  
-  h5 {
-    background: #ffffff;
-    text-align: center;
-    font-size: 20px;
-    text-decoration: underline;
-  }
+}
 
-  h6 {
-    background: #ffffff;
-    text-align: center;
-    font-size: 20px;
-    padding: 1rem;
-    text-decoration: underline;
-  }
+img {
+    width: 100;
+}
 
-  .container {
-    margin: auto;
-    width: 500px;
+a {
+    text-decoration: none;
+    color: #c3a387;
+    font-weight: 600;
+}
+
+.navbar {
+    background-color: #3f1940;;
+    color: #c3a387;
     overflow: auto;
-    padding: 3rem 2rem;
-  }
-  
-  #my-form {
+    height: 110px;
+}
+
+
+.navbar ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* #my-form {
     padding: 2rem;
     background: #f4f4f4;
-  }
-  
-  #my-form label {
+} */
+
+/* #my-form label {
     display: block;
-  }
-  
-  #my-form input[type='text'] {
+} */
+
+/* #my-form input[type='text'] {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-  }
-  
-  button {
+} */
+
+button {
     display: block;
     width: 20%;
     padding: 10px 15px;
@@ -94,43 +104,43 @@
     color: #fff;
     border-radius: 5px;
     margin: auto;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     background: #444;
-  }
-  
-  .bg-dark {
+}
+
+.bg-dark {
     background: #333;
-    color: #fff;
-  }
-  
-  .error {
+    color: #fff ;
+}
+
+/* .error {
     background: orangered;
     color: #fff;
     padding: 5px;
     margin: 5px;
-  }
+} */
 
-  .option {
+.option {
     padding-left: 60%;
     margin-top: -102px; 
     margin-bottom: 102px;
-  }
+}
 
-  
-  .edition {
+
+.edition {
     padding-left: 10%;
-  }
+}
 
-  .difficulty{
+.difficulty{
     margin-left: 0px;
-  }
+}
 
-  .difficultyWord{
+.difficultyWord{
     margin-left: 20%;
-  }
+}
 
-  .difficulty_button{
+.difficulty_button{
     margin-left: 0px;
-  }
+}

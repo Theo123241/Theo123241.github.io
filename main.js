@@ -31,7 +31,7 @@ function display(difficulty, offset, script, type) {
     types = ["townsfolk", "outsider", "minion", "demon", "traveller"]
     let scriptsFalse = scripts.every(element => options[element] === false)
     let typesFalse = types.every(element => options[element] === false)
-
+    console.log(roles_list.length)
 
     while ((options[role.edition] == false && ! scriptsFalse) || (options[role.team] == false && ! typesFalse)) {
         roleNum = Math.floor(Math.random() * roles_list.length);
@@ -53,7 +53,7 @@ function display(difficulty, offset, script, type) {
     let words = ability.length;
     let offsetNum = 0
     if (options[offset] == true) {
-      offsetNum = Math.floor(Math.random() * difficulty);
+        offsetNum = Math.floor(Math.random() * difficulty);
     } 
     for (let i = offsetNum; i < words; i += difficulty) {
         document.getElementById("Ability").innerHTML += ability[i];
@@ -63,11 +63,11 @@ function display(difficulty, offset, script, type) {
 }
 
 function getDifficulty() {
-  difficulty = parseInt(document.getElementById('difficulty').value)
-  if (difficulty <= 0) {
-    difficulty = 1
-  }
-  console.log(difficulty)
+    difficulty = parseInt(document.getElementById('difficulty').value)
+    if (difficulty <= 0) {
+        difficulty = 1
+    } 
+    console.log(difficulty)
 }
 
 
@@ -75,8 +75,8 @@ document.getElementById('difficulty_button').onclick = getDifficulty
 
 const Button = document.getElementById('Button');
     Button.addEventListener('click', function() {
-      document.getElementById("Answer").innerHTML = role.ability;
-      document.getElementById("Answer2").innerHTML = role_name;
+        document.getElementById("Answer").innerHTML = role.ability;
+        document.getElementById("Answer2").innerHTML = role_name;
     })
 
 
@@ -90,9 +90,9 @@ function changeCheckBox() {
 
 const Again = document.getElementById('Again');
     Again.addEventListener('click', function() {
-      role = display(difficulty, offset, options)
-      role_name = (role.name)
-      edition = (role.edition)
+        role = display(difficulty, offset, options)
+        role_name = (role.name)
+        edition = (role.edition)
     })
 
 
