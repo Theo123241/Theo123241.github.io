@@ -143,12 +143,22 @@ button {
     flex-shrink: 0
 }
 
-
-
-.difficultyWord{
-    padding-left: 50%;
+.difficulty-container {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 70px;
+    width: 105%;
 }
 
-.difficulty_button{
-    margin-left: 200px;
+.difficulty-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 00px;
 }
+
+.difficulty-container input {
+    margin: 0px 20px;
+    flex-shrink: 0
+}
+

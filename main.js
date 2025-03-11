@@ -31,7 +31,6 @@ function display(difficulty, offset, script, type) {
     types = ["townsfolk", "outsider", "minion", "demon", "traveller"]
     let scriptsFalse = scripts.every(element => options[element] === false)
     let typesFalse = types.every(element => options[element] === false)
-    console.log(roles_list.length)
 
     while ((options[role.edition] == false && ! scriptsFalse) || (options[role.team] == false && ! typesFalse)) {
         roleNum = Math.floor(Math.random() * roles_list.length);
@@ -47,12 +46,12 @@ function display(difficulty, offset, script, type) {
     ability = (role.ability)
     ability = ability.replace(/[[.'",\/#!$%\^\*;:{}=\_-`~()\+]/g,"")
     ability = ability.replace(/]/g,"")
-    ability = ability.replace(/-/g," ")
+    ability = ability.replace(/-/g,"")
     ability = ability.toLowerCase()
     ability = ability.split(' ')
     let words = ability.length;
     let offsetNum = 0
-    console.log(options.offset)
+    difficulty = getDifficulty()
     if (options.offset == true) {
         offsetNum = Math.floor(Math.random() * difficulty);
     } 
@@ -65,14 +64,15 @@ function display(difficulty, offset, script, type) {
 
 function getDifficulty() {
     difficulty = parseInt(document.getElementById('difficulty').value)
-    if (difficulty <= 0) {
+    if (isNaN(difficulty)) {
+        difficulty = 3
+    }
+    else if (difficulty <= 0) {
         difficulty = 1
     } 
-    console.log(difficulty)
+    return difficulty
 }
 
-
-document.getElementById('difficulty_button').onclick = getDifficulty
 
 const answer = document.getElementById('answer');
     answer.addEventListener('click', function() {
@@ -91,6 +91,7 @@ function changeCheckBox() {
 
 const newRole = document.getElementById('newRole');
     newRole.addEventListener('click', function() {
+        getDifficulty()
         role = display(difficulty, offset, options)
         role_name = (role.name)
         edition = (role.edition)
