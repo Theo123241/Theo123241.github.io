@@ -102,7 +102,7 @@ button {
     border: 0;
     background: #000;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     margin: auto;
 }
 
@@ -115,12 +115,6 @@ button {
     color: #fff ;
 }
 
-/* .error {
-    background: orangered;
-    color: #fff;
-    padding: 5px;
-    margin: 5px;
-} */
 
 .option {
     padding-left: 60%;
@@ -133,14 +127,11 @@ button {
     padding-left: 10%;
 }
 
-.difficulty{
-    margin-left: 0px;
-}
 
 .difficultyWord{
-    margin-left: 20%;
+    padding-left: 50%;
 }
 
 .difficulty_button{
-    margin-left: 0px;
+    margin-left: 200px;
 }

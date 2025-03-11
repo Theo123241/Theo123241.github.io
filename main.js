@@ -52,7 +52,8 @@ function display(difficulty, offset, script, type) {
     ability = ability.split(' ')
     let words = ability.length;
     let offsetNum = 0
-    if (options[offset] == true) {
+    console.log(options.offset)
+    if (options.offset == true) {
         offsetNum = Math.floor(Math.random() * difficulty);
     } 
     for (let i = offsetNum; i < words; i += difficulty) {
@@ -73,8 +74,8 @@ function getDifficulty() {
 
 document.getElementById('difficulty_button').onclick = getDifficulty
 
-const Button = document.getElementById('Button');
-    Button.addEventListener('click', function() {
+const answer = document.getElementById('answer');
+    answer.addEventListener('click', function() {
         document.getElementById("Answer").innerHTML = role.ability;
         document.getElementById("Answer2").innerHTML = role_name;
     })
@@ -84,12 +85,12 @@ const Button = document.getElementById('Button');
 function changeCheckBox() {
     let name = this.id
     options[name] = ! options[name]
-    //console.log("Full dictionary:", JSON.stringify(options, null, 2));
+    console.log("Full dictionary:", JSON.stringify(options, null, 2));
     return 
 }
 
-const Again = document.getElementById('Again');
-    Again.addEventListener('click', function() {
+const newRole = document.getElementById('newRole');
+    newRole.addEventListener('click', function() {
         role = display(difficulty, offset, options)
         role_name = (role.name)
         edition = (role.edition)
