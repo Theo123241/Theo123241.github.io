@@ -123,9 +123,26 @@ button {
 }
 
 
-.edition {
-    padding-left: 10%;
+.available-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    gap: 50px;
+    width: 98%;
 }
+
+.available-container label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.available-container input {
+    margin: 0px 20px;
+    flex-shrink: 0
+}
+
 
 
 .difficultyWord{
