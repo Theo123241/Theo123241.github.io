@@ -25,7 +25,7 @@ function formatAbility(ability) {
     ability = ability.toLowerCase()
     return ability
 }
-function newRole(difficulty, offset, script, type) {
+function newRole(difficulty, options) {
     console.log("hello")
     document.getElementById("Ability").innerHTML = '';
     document.getElementById("AnswerAbility").innerHTML = '';
@@ -35,6 +35,7 @@ function newRole(difficulty, offset, script, type) {
     document.getElementById("Spacing").innerHTML = '';
     roleNum = Math.floor(Math.random() * roles_list.length);
     role = roles_list[roleNum]
+    console.log(roles_list)
     if (role.edition == "") {
         role.edition = "exp"
     }
@@ -108,7 +109,7 @@ function changeCheckBox() {
 const display = document.getElementById('newRole');
     display.addEventListener('click', function() {
         getDifficulty()
-        role = newRole(difficulty, offset, options)
+        role = newRole(difficulty, options)
     })
 
 function getEdition(role) {
@@ -167,3 +168,10 @@ function hideAllHeadings() {
         heading.classList.remove("visible");
     });
 }
+async function loadRoles() {
+    let response = await fetch("roles.json");
+    roles_list = await response.json(); // Now roles_list contains the actual data
+    role = newRole(3, options)
+}
+
+document.addEventListener("DOMContentLoaded", loadRoles);
