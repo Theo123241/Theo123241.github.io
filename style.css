@@ -95,19 +95,12 @@ a {
     border: 1px solid #ccc;
 } */
 
-button {
-    display: block;
-    width: 20%;
-    padding: 10px 15px;
-    border: 0;
-    background: #000;
-    color: #fff;
-    border-radius: 10px;
-    margin: auto;
-}
 
 .btn:hover {
     background: #444;
+}
+.hints-container button:hover {
+    background-color: #3f1940; /* Darker blue on hover */
 }
 
 .bg-dark {
@@ -162,3 +155,38 @@ button {
     flex-shrink: 0
 }
 
+
+.hidden {
+    visibility: hidden; 
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.hints-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 20px; /* Space between buttons */
+    justify-content: center; /* Centers buttons */
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    padding: 20px; /* Adds some spacing */
+}
+
+.hints-container button {
+    display: block;
+    width: 20%;
+    padding: 10px 15px;
+    border: 0;
+    background: #000;
+    color: #fff;
+    border-radius: 10px;
+    margin: auto;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}

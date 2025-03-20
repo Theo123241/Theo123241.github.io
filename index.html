@@ -62,13 +62,27 @@
     
     </main>
 
-    <h2 id = "Ability"> </h2>    
-    <button id="newRole">New Role</button>
-    <h2 id = "Answer">  </h2>
-    <h4 id = 'Answer2'> </h4>
-    <div class="answer">
-        <button id="answer">Answer</button>
+    <div class="hints-container">
+        <h2 id = "Ability"> </h2>    
+        <button id="newRole" onclick="hideAllHeadings()">New Role</button>
+        <div class="headings">
+            <h2 id = 'Type' class="hidden"> </h2>
+            <h2 id = "Edition" class="hidden">  </h2>
+            <h2 id = "Spacing" class="hidden">  </h2>
+            <h2 id = "AnswerAbility" class="hidden">  </h2>
+            <h2 id = 'AnswerName' class="hidden"> </h2>
+        </div>
+        <div class="hints"> 
+            <h4 id = "Hints">Hints</h4>
+        </div>
+        <div class="hints-flex">
+            <button id="type" onclick="showHeadings('Type')">Character Type</button>
+            <button id="edition" onclick="showHeadings('Edition')">Edition</button>
+            <button id="spacing" onclick="showHeadings('Spacing')">Word Spacing</button>
+            <button id="answer" onclick="showHeadings('AnswerAbility', 'AnswerName')">Answer</button>
+        </div>
     </div>
+
     <!-- <script type="text/javascript" src="roles.json"></script> -->
     <script type="text/javascript" src="main.js"></script>
   </body>

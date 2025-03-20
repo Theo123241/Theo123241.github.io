@@ -17,10 +17,22 @@ roles_list = fetch("roles.json")
     .then(roles => roles_list = roles);
 
 
-function display(difficulty, offset, script, type) {
+function formatAbility(ability) {
+    ability = ability.replace(/[[.'",\/#!$%\^\*;:{}=\_-`~()\+]/g,"")
+    ability = ability.replace(/]/g,"")
+    ability = ability.replace(/-/g," ")
+    ability = ability.replace(/\ +/g," ")
+    ability = ability.toLowerCase()
+    return ability
+}
+function newRole(difficulty, offset, script, type) {
+    console.log("hello")
     document.getElementById("Ability").innerHTML = '';
-    document.getElementById("Answer").innerHTML = '';
-    document.getElementById("Answer2").innerHTML = '';
+    document.getElementById("AnswerAbility").innerHTML = '';
+    document.getElementById("AnswerName").innerHTML = '';
+    document.getElementById("Type").innerHTML = '';
+    document.getElementById("Edition").innerHTML = '';
+    document.getElementById("Spacing").innerHTML = '';
     roleNum = Math.floor(Math.random() * roles_list.length);
     role = roles_list[roleNum]
     if (role.edition == "") {
@@ -40,17 +52,11 @@ function display(difficulty, offset, script, type) {
         }
     }
 
-
-
-    let ability = []
-    ability = (role.ability)
-    ability = ability.replace(/[[.'",\/#!$%\^\*;:{}=\_-`~()\+]/g,"")
-    ability = ability.replace(/]/g,"")
-    ability = ability.replace(/-/g,"")
-    ability = ability.toLowerCase()
+    let ability = formatAbility(role.ability)
     ability = ability.split(' ')
+    
     let words = ability.length;
-    let offsetNum = 0
+    offsetNum = 0
     difficulty = getDifficulty()
     if (options.offset == true) {
         offsetNum = Math.floor(Math.random() * difficulty);
@@ -59,6 +65,18 @@ function display(difficulty, offset, script, type) {
         document.getElementById("Ability").innerHTML += ability[i];
         document.getElementById("Ability").innerHTML += ' ';
     }
+
+    ability = formatAbility(role.ability)
+    document.getElementById("Edition").innerHTML = getEdition(role);
+
+    document.getElementById("Type").innerHTML = role.team[0].toUpperCase() + role.team.slice(1);
+
+    ability = showSpacing(ability)
+    document.getElementById("Spacing").innerHTML = ability;
+
+    document.getElementById("AnswerAbility").innerHTML = role.ability;
+    document.getElementById("AnswerName").innerHTML = role.name;
+    
     return(role)
 }
 
@@ -76,8 +94,6 @@ function getDifficulty() {
 
 const answer = document.getElementById('answer');
     answer.addEventListener('click', function() {
-        document.getElementById("Answer").innerHTML = role.ability;
-        document.getElementById("Answer2").innerHTML = role_name;
     })
 
 
@@ -89,15 +105,65 @@ function changeCheckBox() {
     return 
 }
 
-const newRole = document.getElementById('newRole');
-    newRole.addEventListener('click', function() {
+const display = document.getElementById('newRole');
+    display.addEventListener('click', function() {
         getDifficulty()
-        role = display(difficulty, offset, options)
-        role_name = (role.name)
-        edition = (role.edition)
+        role = newRole(difficulty, offset, options)
+    })
+
+function getEdition(role) {
+    if (role.edition == "tb") {
+        edition = "Trouble Brewing"
+    }
+    if (role.edition == "bmr") {
+        edition = "Bad Moon Rising"
+    }
+    if (role.edition == "snv") {
+        edition = "Sects & Violets"
+    }
+    else {
+        edition = "Expiremental"
+    }
+    return edition
+}
+
+
+const type = document.getElementById('type');
+    type.addEventListener('click', function() {
+        
+    })
+
+const editionButton = document.getElementById('edition');
+    editionButton.addEventListener('click', function() {
+        
+    })
+
+
+function showSpacing(ability) {
+        return ability.split(" ").map((word, index) => 
+            index % difficulty !== offsetNum ? "_".repeat(word.length) : word
+        ).join(" ");
+    }
+
+
+
+const spacing = document.getElementById('spacing');
+    spacing.addEventListener('click', function() {
     })
 
 
 document.querySelectorAll('.options').forEach(checkbox => {
     checkbox.addEventListener('change', changeCheckBox);
 });
+
+function showHeadings(...ids) {
+    ids.forEach(id => {
+        document.getElementById(id).classList.add("visible");
+    });
+}
+
+function hideAllHeadings() {
+    document.querySelectorAll("h2").forEach(heading => {
+        heading.classList.remove("visible");
+    });
+}
