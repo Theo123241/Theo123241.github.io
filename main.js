@@ -26,7 +26,6 @@ function formatAbility(ability) {
     return ability
 }
 function newRole(difficulty, options) {
-    console.log("hello")
     document.getElementById("Ability").innerHTML = '';
     document.getElementById("AnswerAbility").innerHTML = '';
     document.getElementById("AnswerName").innerHTML = '';
