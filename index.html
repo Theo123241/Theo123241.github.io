@@ -1,90 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>BotC Role Guessing</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood on the Clocktower Role Guesser</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
-    <!-- Navbar -->
-    <div class="navbar">
-        <div class="container flex">
-            <h1 class="logo">Blood on the Clocktower Role Guessing</h1>
-            <nav>
-                <ul>
-                    <li><a href="https://events.humanitix.com/clocktower-con-2025">Clocktower Con!</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    
-     <!-- Showcase -->
-        <section class="Showcase">
-            <div class="container grid">
-                <div class="showcase-text">
-                    <h1></h1>
+    <div class="container">
+        <header>
+            <h1>Blood on the Clocktower</h1>
+            <div class="subtitle">Character Guessing Game</div>
+        </header>
+        
+        <div class="game-sections">
+            <div class="settings-section">
+                <h2 class="section-title">Game Settings</h2>
+                
+                <div class="filters-section">
+                    <h3>Filters</h3>
+                    <div class="filters-container">
+                        <div class="editions-filter">
+                            <h4>Editions:</h4>
+                            <div class="toggle-options">
+                                <label class="toggle">
+                                    <input type="checkbox" id="tb" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Trouble Brewing</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="snv" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Sects & Violets</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="bmr" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Bad Moon Rising</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="exp" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Experimental</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="teams-filter">
+                            <h4>Teams:</h4>
+                            <div class="toggle-options">
+                                <label class="toggle">
+                                    <input type="checkbox" id="townsfolk" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Townsfolk</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="outsider" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Outsider</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="minion" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Minion</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="demon" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Demon</span>
+                                </label>
+                                
+                                <label class="toggle">
+                                    <input type="checkbox" id="traveller" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Traveler</span>
+                                </label>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="difficulty-section">
+                        <h3>Difficulty</h3>
+                        <div class="difficulty-controls">
+                            <div class="word-spacing">
+                                <label for="difficulty">Word Spacing:</label>
+                                <div class="number-control">
+                                    <button class="decrease-btn">-</button>
+                                    <input type="number" id="difficulty" min="1" max="10" value="3">
+                                    <button class="increase-btn">+</button>
+                                </div>
+                            </div>
+                            
+                            <div class="word-offset">
+                                <label class="toggle">
+                                    <input type="checkbox" id="offset" class="options">
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-label">Offset</span>
+                                </label>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="hints-section">
+                        <h3>Hints</h3>
+                        <div class="hint-buttons">
+                            <button id="type" class="button">Role Type</button>
+                            <button id="edition" class="button">Edition</button>
+                            <button id="spacing" class="button">Show Blanks</button>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+            <div class="guess-section">
+                <h2 class="section-title">Guess the Character</h2>
+                <p class="instruction">Read the partial ability and guess the character!</p>
+                
+                <div class="ability-display">
+                    <p id="ability-text"></p>
+                </div>
+                
+                <div class="role-info">
+                    <div id="Type" class="hint-info"></div>
+                    <div id="Edition" class="hint-info"></div>
+                    <div id="Spacing" class="hint-info"></div>
+                </div>
+                
+                <div class="guess-controls">
+                    <input type="text" id="guess-input" placeholder="Enter character name..." class="guess-input">
+                    <div class="action-buttons">
+                        <button id="check-answer" class="button primary-button">Check Answer</button>
+                    </div>
+                    <div class="navigation-buttons">
+                        <button id="reveal-answer" class="button secondary-button">Reveal Answer</button>
+                        <button id="next-character" class="button primary-button">Next Character</button>
+                    </div>
+                </div>
+                
+                <div id="answer-section" class="answer-section">
+                    <div class="answer-info">
+                        <div class="answer-name" id="AnswerName"></div>
+                        <div class="answer-ability" id="AnswerAbility"></div>
+                    </div>
                 </div>
             </div>
-        </section>
-    <main>
-        
-    <h3>Difficulty</h3>
-    <div class="difficulty-container">
-        <label>Offset <input type="checkbox" class="options" id="offset"></label>
-    
-        <div class="difficulty-wrapper">
-            <label for="difficulty">Difficulty</label>
-            <input type="number" id="difficulty" name="difficulty" min="1" max="10">
-        </div>
-    </div>
-    <h3>Available Roles</h3>
-
-    <div class="available-container">
-        <div class="edition">
-            <label>Trouble Brewing<input type="checkbox" class="options" id="tb"></label>
-            <label>Bad Moon Rising<input type="checkbox" class="options" id="bmr"></label>
-            <label>Sects and Violets<input type="checkbox" class="options" id="snv"> </label>
-            <label>Experimental<input type="checkbox" class="options" id="exp"></label>
-        </div>
-
-        <div class="type">
-            <label><input type="checkbox" class="options" id="townsfolk">Townsfolk</label>
-            <label><input type="checkbox" class="options" id="outsider">Outsiders</label>
-            <label><input type="checkbox" class="options" id="minion">Minions</label>
-            <label><input type="checkbox" class="options" id="demon">Demon</label>
-            <label><input type="checkbox" class="options" id="traveller">Travellers</label>
         </div>
     </div>
     
-    </main>
-
-    <div class="hints-container">
-        <h2 id = "Ability" class="hidden"> </h2>    
-        <button id="newRole" onclick="hideAllHeadings();showHeadings('Ability')">New Role</button>
-        <div class="headings">
-            <h2 id = 'Type' class="hidden"> </h2>
-            <h2 id = "Edition" class="hidden">  </h2>
-            <h2 id = "Spacing" class="hidden">  </h2>
-            <h2 id = "AnswerAbility" class="hidden">  </h2>
-            <h2 id = 'AnswerName' class="hidden"> </h2>
-        </div>
-        <div class="hints"> 
-            <h3 id = "Hints">Hints</h3>
-        </div>
-        <div class="hints-flex">
-            <button id="type" onclick="showHeadings('Type')">Character Type</button>
-            <button id="edition" onclick="showHeadings('Edition')">Edition</button>
-            <button id="spacing" onclick="showHeadings('Spacing')">Word Spacing</button>
-            <button id="answer" onclick="showHeadings('AnswerAbility', 'AnswerName')">Answer</button>
-        </div>
-    </div>
-
-    <!-- <script type="text/javascript" src="roles.json"></script> -->
-    <script type="text/javascript" src="main.js"></script>
-  </body>
+    <script src="main.js"></script>
+</body>
 </html>
-

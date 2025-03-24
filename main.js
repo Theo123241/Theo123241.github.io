@@ -1,5 +1,6 @@
-
-let difficulty = 3
+let difficulty = 3;
+let offsetNum = 0;
+let roles_list = [];
 let options = {
     offset: false,
     tb: false,
@@ -10,167 +11,199 @@ let options = {
     outsider: false,
     minion: false,
     demon: false,
-    traveller:  false}
+    traveller: false,
+    fabled: false
+};
 
-roles_list = fetch("roles.json")
-    .then(response => response.json())
-    .then(roles => roles_list = roles);
+const difficultyInput = document.getElementById('difficulty');
+const offsetValue = document.getElementById('offset-value');
+const nextCharacterBtn = document.getElementById('next-character');
+const revealAnswerBtn = document.getElementById('reveal-answer');
+const checkAnswerBtn = document.getElementById('check-answer');
+const typeBtn = document.getElementById('type');
+const editionBtn = document.getElementById('edition');
+const spacingBtn = document.getElementById('spacing');
+const decreaseBtn = document.querySelector('.decrease-btn');
+const increaseBtn = document.querySelector('.increase-btn');
 
-
-function formatAbility(ability) {
-    ability = ability.replace(/[[.'",\/#!$%\^\*;:{}=\_-`~()\+]/g,"")
-    ability = ability.replace(/]/g,"")
-    ability = ability.replace(/-/g," ")
-    ability = ability.replace(/\ +/g," ")
-    ability = ability.toLowerCase()
-    return ability
-}
-function newRole(difficulty, options) {
-    document.getElementById("Ability").innerHTML = '';
-    document.getElementById("AnswerAbility").innerHTML = '';
-    document.getElementById("AnswerName").innerHTML = '';
-    document.getElementById("Type").innerHTML = '';
-    document.getElementById("Edition").innerHTML = '';
-    document.getElementById("Spacing").innerHTML = '';
-    roleNum = Math.floor(Math.random() * roles_list.length);
-    role = roles_list[roleNum]
-    console.log(roles_list)
-    if (role.edition == "") {
-        role.edition = "exp"
-    }
-
-    scripts = ["tb", "snv", "bmr", "exp"]
-    types = ["townsfolk", "outsider", "minion", "demon", "traveller"]
-    let scriptsFalse = scripts.every(element => options[element] === false)
-    let typesFalse = types.every(element => options[element] === false)
-
-    while ((options[role.edition] == false && ! scriptsFalse) || (options[role.team] == false && ! typesFalse)) {
-        roleNum = Math.floor(Math.random() * roles_list.length);
-        role = roles_list[roleNum]
-        if (role.edition == "") {
-            role.edition = "exp"
-        }
-    }
-
-    let ability = formatAbility(role.ability)
-    ability = ability.split(' ')
-    
-    let words = ability.length;
-    offsetNum = 0
-    difficulty = getDifficulty()
-    if (options.offset == true) {
-        offsetNum = Math.floor(Math.random() * difficulty);
-    } 
-    for (let i = offsetNum; i < words; i += difficulty) {
-        document.getElementById("Ability").innerHTML += ability[i];
-        document.getElementById("Ability").innerHTML += ' ';
-    }
-
-    ability = formatAbility(role.ability)
-    document.getElementById("Edition").innerHTML = getEdition(role);
-
-    document.getElementById("Type").innerHTML = role.team[0].toUpperCase() + role.team.slice(1);
-
-    ability = showSpacing(ability)
-    document.getElementById("Spacing").innerHTML = ability;
-
-    document.getElementById("AnswerAbility").innerHTML = role.ability;
-    document.getElementById("AnswerName").innerHTML = role.name;
-    
-    return(role)
-}
-
-function getDifficulty() {
-    difficulty = parseInt(document.getElementById('difficulty').value)
-    if (isNaN(difficulty)) {
-        difficulty = 3
-    }
-    else if (difficulty <= 0) {
-        difficulty = 1
-    } 
-    return difficulty
-}
-
-
-const answer = document.getElementById('answer');
-    answer.addEventListener('click', function() {
-    })
-
-
-
-function changeCheckBox() {
-    let name = this.id
-    options[name] = ! options[name]
-    console.log("Full dictionary:", JSON.stringify(options, null, 2));
-    return 
-}
-
-const display = document.getElementById('newRole');
-    display.addEventListener('click', function() {
-        getDifficulty()
-        role = newRole(difficulty, options)
-    })
-
-function getEdition(role) {
-    if (role.edition == "tb") {
-        edition = "Trouble Brewing"
-    }
-    if (role.edition == "bmr") {
-        edition = "Bad Moon Rising"
-    }
-    if (role.edition == "snv") {
-        edition = "Sects & Violets"
-    }
-    else {
-        edition = "Expiremental"
-    }
-    return edition
-}
-
-
-const type = document.getElementById('type');
-    type.addEventListener('click', function() {
-        
-    })
-
-const editionButton = document.getElementById('edition');
-    editionButton.addEventListener('click', function() {
-        
-    })
-
-
-function showSpacing(ability) {
-        return ability.split(" ").map((word, index) => 
-            index % difficulty !== offsetNum ? "_".repeat(word.length) : word
-        ).join(" ");
-    }
-
-
-
-const spacing = document.getElementById('spacing');
-    spacing.addEventListener('click', function() {
-    })
-
-
-document.querySelectorAll('.options').forEach(checkbox => {
-    checkbox.addEventListener('change', changeCheckBox);
+// Toggle hints
+typeBtn.addEventListener('click', () => {
+    document.getElementById('Type').classList.toggle('active');
 });
 
-function showHeadings(...ids) {
-    ids.forEach(id => {
-        document.getElementById(id).classList.add("visible");
+editionBtn.addEventListener('click', () => {
+    document.getElementById('Edition').classList.toggle('active');
+});
+
+spacingBtn.addEventListener('click', () => {
+    document.getElementById('Spacing').classList.toggle('active');
+});
+
+// Increase/decrease difficulty
+decreaseBtn.addEventListener('click', () => {
+    if (difficultyInput.value > 1) {
+        difficultyInput.value = parseInt(difficultyInput.value) - 1;
+        difficulty = parseInt(difficultyInput.value);
+    }
+});
+
+increaseBtn.addEventListener('click', () => {
+    difficultyInput.value = parseInt(difficultyInput.value) + 1;
+    difficulty = parseInt(difficultyInput.value);
+});
+
+
+// Check answer functionality
+checkAnswerBtn.addEventListener('click', () => {
+    const guessInput = document.getElementById('guess-input');
+    const answerName = document.getElementById('AnswerName').textContent.toLowerCase();
+    
+    if (guessInput.value.toLowerCase() === answerName.toLowerCase()) {
+        alert('Correct!');
+    } else {
+        alert('Incorrect. Try again!');
+    }
+});
+
+// Toggle answer reveal
+revealAnswerBtn.addEventListener('click', () => {
+    document.getElementById('answer-section').classList.toggle('active');
+});
+
+// Next character functionality
+nextCharacterBtn.addEventListener('click', () => {
+    document.getElementById('answer-section').classList.remove('active');
+    document.getElementById('guess-input').value = '';
+    newRole(difficulty, options);
+});
+
+// Toggle checkboxes
+document.querySelectorAll('.options').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        let name = this.id;
+        options[name] = !options[name];
+        console.log(options)
     });
+});
+
+// Format the ability text
+function formatAbility(ability) {
+    ability = ability.replace(/[[.'",\/#!$%\^\*;:{}=\_-`~()\+]/g,"");
+    ability = ability.replace(/]/g,"");
+    ability = ability.replace(/-/g," ");
+    ability = ability.replace(/\ +/g," ");
+    ability = ability.toLowerCase();
+    return ability;
 }
 
-function hideAllHeadings() {
-    document.querySelectorAll("h2").forEach(heading => {
-        heading.classList.remove("visible");
-    });
+// Generate a new role
+function newRole(difficulty, options) {
+    // Clear previous role information
+    document.getElementById('Type').textContent = '';
+    document.getElementById('Edition').textContent = '';
+    document.getElementById('Spacing').textContent = '';
+    document.getElementById('AnswerAbility').textContent = '';
+    document.getElementById('AnswerName').textContent = '';
+    
+    // Select a random role
+    const roleNum = Math.floor(Math.random() * roles_list.length);
+    const role = roles_list[roleNum];
+
+    // Process edition info
+    let roleEdition = role.edition || "exp";
+    
+    // Filter roles based on options
+    const scripts = ["tb", "snv", "bmr", "exp"];
+    const types = ["townsfolk", "outsider", "minion", "demon", "traveller", "fabled"];
+    
+    let scriptsFalse = scripts.every(element => options[element] === false);
+    let typesFalse = types.every(element => options[element] === false);
+    
+    // Apply filters if necessary
+    if ((options[roleEdition] === false && !scriptsFalse) || (options[role.team] === false && !typesFalse)) {
+        return newRole(difficulty, options);
+    }
+    
+    // Format and display ability
+    let ability = formatAbility(role.ability);
+    let words = ability.split(' ');
+    let abilityDisplay = '';
+    
+    // Apply difficulty and offset
+    if (options.offset) {
+        offsetNum = Math.floor(Math.random()*difficulty)
+    }
+
+    for (let i = offsetNum; i < words.length; i += difficulty) {
+        abilityDisplay += words[i] + ' ';
+    }
+    
+    // Display ability with blanks
+    let spacingDisplay = showSpacing(ability);
+    
+    // Update display
+    document.getElementById('ability-text').textContent = abilityDisplay || "Select a new character";
+    document.getElementById('Type').textContent = role.team[0].toUpperCase() + role.team.slice(1);
+    document.getElementById('Edition').textContent = getEdition(role);
+    document.getElementById('Spacing').textContent = spacingDisplay;
+    
+    // Update answer section
+    document.getElementById('AnswerAbility').textContent = role.ability;
+    document.getElementById('AnswerName').textContent = role.name;
+
+    //Update hint section
+    Type.classList.remove('active');
+    Edition.classList.remove('active');
+    Spacing.classList.remove('active');
+    
+    return role;
 }
+
+// Get formatted edition name
+function getEdition(role) {
+    if (role.edition === "tb") {
+        return "Trouble Brewing";
+    } else if (role.edition === "bmr") {
+        return "Bad Moon Rising";
+    } else if (role.edition === "snv") {
+        return "Sects & Violets";
+    } else {
+        return "Experimental";
+    }
+}
+
+// Create spacing display
+function showSpacing(ability) {
+    let words = ability.split(" ");
+    let result = "";
+    
+    for (let i = 0; i < words.length; i++) {
+        if (i % difficulty === offsetNum) {
+            result += words[i];
+        } else {
+            result += "_".repeat(words[i].length);
+        }
+        result += " ";
+    }
+    
+    return result;
+}
+
+// Fetch roles data
 async function loadRoles() {
-    let response = await fetch("roles.json");
-    roles_list = await response.json(); // Now roles_list contains the actual data
-    role = newRole(3, options)
+    try {
+        const response = await fetch('roles.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        roles_list = await response.json();
+
+        // Get the first role
+        newRole(difficulty, options);
+    } catch (error) {
+        console.error("Error loading roles:", error);
+    }
 }
 
+// Initialize the game when DOM is loaded
 document.addEventListener("DOMContentLoaded", loadRoles);
