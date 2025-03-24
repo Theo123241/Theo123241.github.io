@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Pirata+One&display=swap');
 
 :root {
-    --dark-red: ##240f2d;
+    --dark-red: #000000;
     --blood-red: #8B0000;
-    --light-red: #A52A2A;
     --parchment: #F5F5DC;
-    --dark-brown: #3A2618;
+    --dark-brown: #591068;
     --gold: #D4AF37;
     --light-brown: #d5c2a9;
-    --dark-purple: #1A0A0A;
+    --dark-purple: #25063a;
 }
 
 * {
@@ -87,15 +86,6 @@ h2, h3, h4 {
     border: 1px solid var(--dark-brown);
     transition: background-color 0.3s ease-in-out;
 }
-/*
-#guess-section {
-    background-color: var(--light-brown);
-    border-radius: 10px;
-    padding: 20px;
-    color: #333;
-    border: 1px solid var(--dark-brown);
-    transition: background-color 0.3s ease-in-out;
-}*/
 
 .flash-green {
     background-color: limegreen;
@@ -210,7 +200,7 @@ input[type="number"] {
 }
 
 .toggle input:checked + .toggle-slider {
-    background-color: var(--blood-red);
+    background-color: var(--dark-brown);
 }
 
 .toggle input:checked + .toggle-slider:before {
@@ -295,12 +285,12 @@ input[type="number"] {
 }
 
 .secondary-button {
-    background-color: var(--dark-brown);
+    background-color: var(--blood-red);
     color: var(--parchment);
 }
 
 .button:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 .answer-section {

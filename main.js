@@ -52,14 +52,14 @@ increaseBtn.addEventListener('click', () => {
     difficulty = parseInt(difficultyInput.value);
 });
 
-
+correct = false
 function checkAnswer() {
 
     const guessInput = document.getElementById('guess-input');
     const answerName = document.getElementById('AnswerName').textContent.toLowerCase();
     const guessSection = document.getElementById('guess-section');
     
-    const correct = spellingMatch(guessInput.value, answerName)
+    correct = spellingMatch(guessInput.value, answerName)
     if (correct) {
         document.getElementById('answer-section').classList.toggle('active');
         guessSection.classList.add('flash-green');
@@ -79,9 +79,17 @@ checkAnswerBtn.addEventListener('click', () => {
     checkAnswer()
 });
 
+//Enter key press
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
-        checkAnswer()
+        if (correct) {
+            document.getElementById('answer-section').classList.remove('active');
+            document.getElementById('guess-input').value = '';
+            newRole(difficulty, options);
+        }
+        else {
+            checkAnswer()
+        }
     }
 });
 
@@ -116,7 +124,7 @@ function levenshteinDistance(s1, s2) {
     return dp[len1][len2];
 }
 
-function spellingMatch(guess, answer, maxDistance = 3) {
+function spellingMatch(guess, answer, maxDistance = 2) {
     guess = guess.toLowerCase()
     const distance = levenshteinDistance(guess, answer.toLowerCase());
     
@@ -164,6 +172,7 @@ function newRole(difficulty, options) {
     document.getElementById('Spacing').textContent = '';
     document.getElementById('AnswerAbility').textContent = '';
     document.getElementById('AnswerName').textContent = '';
+    correct = false
     
     // Select a random role
     const roleNum = Math.floor(Math.random() * roles_list.length);
