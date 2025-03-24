@@ -53,17 +53,78 @@ increaseBtn.addEventListener('click', () => {
 });
 
 
-// Check answer functionality
-checkAnswerBtn.addEventListener('click', () => {
+function checkAnswer() {
+
     const guessInput = document.getElementById('guess-input');
     const answerName = document.getElementById('AnswerName').textContent.toLowerCase();
+    const guessSection = document.getElementById('guess-section');
     
-    if (guessInput.value.toLowerCase() === answerName.toLowerCase()) {
-        alert('Correct!');
+    const correct = spellingMatch(guessInput.value, answerName)
+    if (correct) {
+        document.getElementById('answer-section').classList.toggle('active');
+        guessSection.classList.add('flash-green');
+        setTimeout(() => {
+            guessSection.classList.remove('flash-green');
+        }, 500);
     } else {
-        alert('Incorrect. Try again!');
+        document.getElementById('guess-input').value = '';
+        guessSection.classList.add('flash-red');
+        setTimeout(() => {
+            guessSection.classList.remove('flash-red');
+        }, 500);
+    }
+}
+// Check answer functionality
+checkAnswerBtn.addEventListener('click', () => {
+    checkAnswer()
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        checkAnswer()
     }
 });
+
+
+//Spell Check
+function levenshteinDistance(s1, s2) {
+    const len1 = s1.length;
+    const len2 = s2.length;
+
+    // Initialize a 2D array (dp) for dynamic programming
+    const dp = [];
+    for (let i = 0; i <= len1; i++) {
+        dp[i] = [];
+        for (let j = 0; j <= len2; j++) {
+            dp[i][j] = 0;
+        }
+    }
+
+    for (let i = 0; i <= len1; i++) dp[i][0] = i;
+    for (let j = 0; j <= len2; j++) dp[0][j] = j;
+
+    for (let i = 1; i <= len1; i++) {
+        for (let j = 1; j <= len2; j++) {
+            const cost = s1[i - 1] === s2[j - 1] ? 0 : 1;
+            dp[i][j] = Math.min(
+                dp[i - 1][j] + 1,      // Deletion
+                dp[i][j - 1] + 1,      // Insertion
+                dp[i - 1][j - 1] + cost // Substitution
+            );
+        }
+    }
+    return dp[len1][len2];
+}
+
+function spellingMatch(guess, answer, maxDistance = 3) {
+    guess = guess.toLowerCase()
+    const distance = levenshteinDistance(guess, answer.toLowerCase());
+    
+    if (distance <= maxDistance) {
+        return answer;
+    }
+    return null;
+}
 
 // Toggle answer reveal
 revealAnswerBtn.addEventListener('click', () => {
@@ -82,7 +143,6 @@ document.querySelectorAll('.options').forEach(checkbox => {
     checkbox.addEventListener('change', function() {
         let name = this.id;
         options[name] = !options[name];
-        console.log(options)
     });
 });
 
@@ -114,7 +174,7 @@ function newRole(difficulty, options) {
     
     // Filter roles based on options
     const scripts = ["tb", "snv", "bmr", "exp"];
-    const types = ["townsfolk", "outsider", "minion", "demon", "traveller", "fabled"];
+    const types = ["townsfolk", "outsider", "minion", "demon", "traveller"];
     
     let scriptsFalse = scripts.every(element => options[element] === false);
     let typesFalse = types.every(element => options[element] === false);

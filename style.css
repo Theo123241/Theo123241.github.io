@@ -71,12 +71,38 @@ h2, h3, h4 {
     gap: 20px;
 }
 
-.settings-section, .guess-section {
+.settings-section {
     background-color: var(--light-brown);
     border-radius: 10px;
     padding: 20px;
     color: #333;
     border: 1px solid var(--dark-brown);
+}
+
+.guess-section {
+    background-color: var(--light-brown);
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
+    border: 1px solid var(--dark-brown);
+    transition: background-color 0.3s ease-in-out;
+}
+/*
+#guess-section {
+    background-color: var(--light-brown);
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
+    border: 1px solid var(--dark-brown);
+    transition: background-color 0.3s ease-in-out;
+}*/
+
+.flash-green {
+    background-color: limegreen;
+}
+
+.flash-red {
+    background-color: rgb(207, 41, 12);
 }
 
 .settings-container {
