@@ -2,17 +2,17 @@ let difficulty = 3;
 let offsetNum = 0;
 let roles_list = [];
 let options = {
-    offset: false,
-    tb: false,
-    snv: false,
-    bmr: false,
-    exp: false,
-    townsfolk: false,
-    outsider: false,
-    minion: false,
-    demon: false,
-    traveller: false,
-    fabled: false
+    offset: true,
+    tb: true,
+    snv: true,
+    bmr: true,
+    exp: true,
+    townsfolk: true,
+    outsider: true,
+    minion: true,
+    demon: true,
+    traveller: true,
+    fabled: true
 };
 
 const difficultyInput = document.getElementById('difficulty');
