@@ -2,7 +2,7 @@ let difficulty = 3;
 let offsetNum = 0;
 let roles_list = [];
 let options = {
-    offset: true,
+    offset: false,
     tb: true,
     snv: true,
     bmr: true,
